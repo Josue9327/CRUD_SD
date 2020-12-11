@@ -1,0 +1,72 @@
+<%-include('partials/_header');-%>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-7">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Nombre</th>
+                        <th>Grupo</th>
+                        <th>Escuela</th>
+                        <th>Eliminar</th>
+                        <th>Modificar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(data) { %>
+                        <% for(var i = 0; i < data.length; i++) { %>
+                        <tr>
+                            <td><%-i+1;-%></td>
+                            <td><%-data[i].nombre;-%> <%-data[i].apellidoPaterno;-%> <%-data[i].apellidoMaterno;-%></td>
+                            <td><%-data[i].grupo;-%></td>
+                            <td><%-data[i].escuela;-%></td>
+                            <td>
+                                <a href="/delete/<%-data[i].id;-%>" class="btn btn-danger"> Eliminar alumno </a>
+                            </td>
+                            <td>
+                                <a href="/update/<%-data[i].id;-%>" class="btn btn-info"> Actualizar alumno </a>
+                            </td>
+                        </tr>
+                        <%}%>
+                    <%}%>
+                      
+                      
+
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-5">
+            <div class="card-body">
+                <form action="/add" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="nombre" placeholder="Nombre" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="apellidoPaterno" placeholder="Apellido paterno" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="apellidoMaterno" placeholder="Apellido Materno" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="grupo" placeholder="Grupo" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="escuela" placeholder="Escuela" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Guardar alumno
+                    </button>
+    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<%-include('partials/_footer');-%>
